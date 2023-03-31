@@ -1,0 +1,4 @@
+<launch>
+
+  <node name="data_gen_node" pkg="footstep_datagen" type="gendata.py" output="screen" />
+</launch>
