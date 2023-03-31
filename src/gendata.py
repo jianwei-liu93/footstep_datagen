@@ -24,13 +24,18 @@ class dataGenerator():
 
         rospy.wait_for_service('plan_footsteps')
         self.footstep_plan_srv = rospy.ServiceProxy("plan_footsteps", PlanFootsteps)
-        file_num = 0
-        path = self.gen_rand_path()
-        if not (path == None):
+        file_num_start = 0
+        file_num_end = 10000
+        for file_num in range(file_num_start, file_num_end):
+            path = None
+            while (path == None):
+                path = self.gen_rand_path()
+
             path_np = self.convert_path_np(path)
             f_name = "2D_footsteps_" + str(file_num) + ".npy"
             f_path = self.datapath + f_name
             np.save(f_path, path_np)
+
         rospy.spin()
 
 

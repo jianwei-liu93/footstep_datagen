@@ -1,0 +1,9 @@
+<launch>
+
+  <node name="data_gen_node" pkg="footstep_datagen" type="gendata.py" output="screen" />
+
+
+  <node name="map_server" pkg="map_server" type="map_server" args="$(find footstep_planner)/maps/sample.yaml" />
+  <include file="$(find footstep_planner)/launch/rviz_footstep_planning.launch" />  
+  <include file="$(find footstep_planner)/launch/footstep_planner.launch" />
+</launch>
